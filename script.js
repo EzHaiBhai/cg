@@ -55,6 +55,127 @@ const copyFLASH= async () => {
   }
 };
 
+const copyMATLABCG= async () => {
+  try {
+    await navigator.clipboard.writeText(MATLABCG);
+  } catch (error) {
+    console.error("Failed to copy to clipboard:", error);
+  }
+};
+
+const MATLABCG =`
+ Matlab Programming 
+1. write a program for image enhancement . for matlab
+% Read the input image
+input_image = imread('input_image.jpg');
+% Convert the image to grayscale if it's not already in grayscale
+if size(input_image, 3) == 3
+ input_image_gray = rgb2gray(input_image);
+else
+ input_image_gray = input_image;
+end
+% Perform histogram equalization
+output_image = histeq(input_image_gray);
+% Display the original and enhanced images
+subplot(1, 2, 1), imshow(input_image_gray), title('Original Image');
+subplot(1, 2, 2), imshow(output_image), title('Enhanced Image');
+% Save the enhanced image
+imwrite(output_image, 'enhanced_image.jpg');
+2. write a program for image compression . for matlab
+% Read the input image
+input_image = imread('input_image.jpg');
+% Convert the image to grayscale if it's not already in grayscale
+if size(input_image, 3) == 3
+ input_image_gray = rgb2gray(input_image);
+else
+ input_image_gray = input_image;
+end
+% Set the compression quality (adjust as needed)
+compression_quality = 80;
+% Compress the image using JPEG compression
+compressed_image = imresize(input_image_gray, 0.5); % Resize for faster processing
+imwrite(compressed_image, 'compressed_image.jpg', 'Quality', compression_quality);
+% Display the original and compressed images
+subplot(1, 2, 1), imshow(input_image_gray), title('Original Image');
+subplot(1, 2, 2), imshow(compressed_image), title('Compressed Image');
+% Calculate compression ratio
+input_image_info = imfinfo('input_image.jpg');
+compressed_image_info = imfinfo('compressed_image.jpg');
+compression_ratio = input_image_info.FileSize / compressed_image_info.FileSize;
+fprintf('Compression ratio: %.2f\n', compression_ratio);
+3.Write a program for color image processing (in MATLAB)
+% Read the input color image
+input_image = imread('input_color_image.jpg');
+% Display the original color image
+subplot(2, 2, 1), imshow(input_image), title('Original Color Image');
+% Convert the color image to grayscale
+gray_image = rgb2gray(input_image);
+% Display the grayscale image
+subplot(2, 2, 2), imshow(gray_image), title('Grayscale Image');
+% Apply a median filter to reduce noise
+filtered_image = medfilt2(gray_image, [3, 3]);
+% Display the filtered image
+subplot(2, 2, 3), imshow(filtered_image), title('Filtered Image');
+% Perform edge detection using the Sobel operator
+edge_image = edge(filtered_image, 'Sobel');
+% Display the edge-detected image
+subplot(2, 2, 4), imshow(edge_image), title('Edge-Detected Image');
+% Save the processed images
+imwrite(gray_image, 'grayscale_image.jpg');
+imwrite(filtered_image, 'filtered_image.jpg');
+imwrite(edge_image, 'edge_detected_image.jpg');
+4.Write a program for image segmentation (in MATLAB)
+% Read the input grayscale image
+input_image = imread('input_image.jpg');
+% Convert the image to grayscale if it's not already in grayscale
+if size(input_image, 3) == 3
+ input_image_gray = rgb2gray(input_image);
+else
+ input_image_gray = input_image;
+end
+% Display the original grayscale image
+subplot(1, 2, 1), imshow(input_image_gray), title('Original Grayscale Image');
+% Apply thresholding to segment the image
+threshold_value = 100; % Adjust threshold value as needed
+binary_image = input_image_gray > threshold_value;
+% Display the segmented image
+subplot(1, 2, 2), imshow(binary_image), title('Segmented Image');
+% Save the segmented image
+imwrite(binary_image, 'segmented_image.jpg');
+5.Write a program for image morphology.(in MATLAB)
+% Read the input binary image
+binary_image = imread('binary_image.jpg');
+% Display the original binary image
+subplot(2, 3, 1), imshow(binary_image), title('Original Binary Image');
+% Perform erosion operation
+se = strel('disk', 5); % Define a disk-shaped structuring element
+eroded_image = imerode(binary_image, se);
+% Display the eroded image
+subplot(2, 3, 2), imshow(eroded_image), title('Eroded Image');
+% Perform dilation operation
+dilated_image = imdilate(binary_image, se);
+% Display the dilated image
+subplot(2, 3, 3), imshow(dilated_image), title('Dilated Image');
+% Perform opening operation
+opened_image = imopen(binary_image, se);
+% Display the opened image
+subplot(2, 3, 4), imshow(opened_image), title('Opened Image');
+% Perform closing operation
+closed_image = imclose(binary_image, se);
+% Display the closed image
+subplot(2, 3, 5), imshow(closed_image), title('Closed Image');
+% Perform boundary extraction
+boundary_image = binary_image - eroded_image;
+% Display the boundary image
+subplot(2, 3, 6), imshow(boundary_image), title('Boundary Image');
+% Save the processed images
+imwrite(eroded_image, 'eroded_image.jpg');
+imwrite(dilated_image, 'dilated_image.jpg');
+imwrite(opened_image, 'opened_image.jpg');
+imwrite(closed_image, 'closed_image.jpg');
+imwrite(boundary_image, 'boundary_image.jpg');
+`;
+
 const FLASH = `
 
 PROGRAM 1
